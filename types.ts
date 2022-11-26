@@ -21,7 +21,7 @@ interface Job {
     electJobNumber: string
     attCFOContact: string
     description?: string
-    acasCompletionDate: Date
+    acasCompletionDate?: Date
     supplierEstimatedCompleteDate?: Date
 }
 
