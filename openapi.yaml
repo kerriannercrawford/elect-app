@@ -4,7 +4,200 @@ info:
   title: Elect General App
 
 paths:
+  /jobs:
+    get:
+      summary: Returns a list of jobs
+      responses: 
+        '200':
+          $ref: '#/components/responses/Jobs'
+    post:
+      summary: Creates a new job
+      requestBody:
+        description: Details for new job
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '200':
+          $ref: '#/components/responses/Job'
+  
+  /jobs/{id}:
+    get:
+      summary: Returns a job by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the job to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Job'
+    patch:
+      summary: Updates a job by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the job to update
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Job'
+    delete:
+      summary: Deletes a job by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the job to delete
+          schema:
+            type: string
+      responses:
+        '200': 
+          $ref: '#/components/responses/DeletedJob'
+
 
 components:
   schemas:
+    Job:
+      type: object
+      properties:
+        id: 
+          type: string
+          required: true
+        status:
+          type: string
+          required: true
+        attWorkRequestNumber:
+          type: string
+          required: true
+        type: 
+          type: string
+          required: true
+        projectNumber:
+          type: string
+          required: true
+        electJobNumber: string
+          type: string
+          required: true
+        attCFOContact: 
+          type: string
+          required: true
+        description:
+          type: string
+          required: false
+        acasCompletionDate:
+          type: string
+          required: false
+        supplierEstimatedCompleteDate:
+          type: string
+          required: false
+        address:
+          $ref: '#/components/schemas/Address'
+        foreman:
+          $ref: '#/components/schemas/Foreman'
+    Address:
+      type: object
+      properties:
+        streetAddress:
+          type: string
+          required: true
+        city: 
+          type: string
+          required: true
+    Foreman: 
+      type: object
+      properties:
+        name: 
+          type: string
+          required: true
+        phoneNumber: 
+          type: string
+          required: true
+    ArrayOfJobs:
+      type: array
+        items:
+          $ref: '#/components/schemas/Job'
+    Job_PATCH:
+      type: object
+      properties:
+        id: 
+          type: string
+          required: false
+        status:
+          type: string
+          required: false
+        attWorkRequestNumber:
+          type: string
+          required: false
+        type: 
+          type: string
+          required: false
+        projectNumber:
+          type: string
+          required: false
+        electJobNumber: string
+          type: string
+          required: false
+        attCFOContact: 
+          type: string
+          required: false
+        description:
+          type: string
+          required: false
+        acasCompletionDate:
+          type: string
+          required: false
+        supplierEstimatedCompleteDate:
+          type: string
+          required: false
+        address:
+          $ref: '#/components/schemas/Address'
+        foreman:
+          $ref: '#/components/schemas/Foreman'
+    Address_PATCH:
+      type: object
+      properties:
+        streetAddress:
+          type: string
+          required: false
+        city: 
+          type: string
+          required: false
+    Foreman_PATCH: 
+      type: object
+      properties:
+        name: 
+          type: string
+          required: false
+        phoneNumber: 
+          type: string
+          required: false
   responses:
+    Jobs:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ArrayOfJobs'
+    Job:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Job'
+    
+    DeletedJob:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
