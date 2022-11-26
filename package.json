@@ -1,0 +1,20 @@
+{
+  "name": "elect-app",
+  "version": "1.0.0",
+  "description": "Elect General App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kerriannercrawford/elect-app.git"
+  },
+  "keywords": [],
+  "author": "Kerri Crawford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kerriannercrawford/elect-app/issues"
+  },
+  "homepage": "https://github.com/kerriannercrawford/elect-app#readme"
+}
